@@ -1,0 +1,101 @@
+<html>
+<head>
+    <title>Form Validation</title>
+</head>
+<body bgcolor="green">
+    <h1 align="center">FORM VALIDATION</h1>
+    <center>
+        <form name="form" action="" method="POST" onsubmit="return validate_form()">
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" name="name"></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" name="email"></td>
+                </tr>
+                <tr>
+                    <td>Mobile number</td>
+                    <td><input type="tel" name="mobile"></td>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td><input type="text" name="user"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td><input type="reset" value="reset"></td>
+                    <td colspan="2"><input type="submit" value="submit"></td>
+                </tr>
+            </table>
+        </form>
+    </center>
+
+    <script type="text/javascript">
+        function validate_form() {
+            var name = document.form.name.value;
+            var email = document.form.email.value;
+            var mobile = document.form.mobile.value;
+            var user = document.form.user.value;
+            var password = document.form.password.value;
+
+            var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+            var ren = /[0-9!@#$%^&*]/;
+
+            // Name Validation
+            if (name == "") {
+                alert("Enter name");
+                document.form.name.focus();
+                return false;
+            } else if (ren.test(name)) {
+                alert("Enter valid name");
+                document.form.name.focus();
+                return false;
+            }
+
+            // Email Validation
+            if (email == "") {
+                alert("Enter email");
+                document.form.email.focus();
+                return false;
+            }
+
+            // Mobile Number Validation
+            if (mobile == "") {
+                alert("Enter mobile number");
+                document.form.mobile.focus();
+                return false;
+            } else if (isNaN(mobile)) {
+                alert("Enter valid mobile number");
+                document.form.mobile.focus();
+                return false;
+            } else if (mobile.length != 10) {
+                alert("Enter mobile number with 10 digits");
+                document.form.mobile.focus();
+                return false;
+            }
+
+            // Username Validation
+            if (user == "") {
+                alert("Enter Username");
+                document.form.user.focus();
+                return false;
+            }
+
+            // Password Validation
+            if (password == "" || password.length < 8 || !re.test(password)) {
+                alert("Enter a password with minimum 8 characters, at least one uppercase letter, one lowercase letter, one digit, and one special character.");
+                document.form.password.focus();
+                return false;
+            }
+
+            // If all validations pass
+            return true;
+        }
+    </script>
+</body>
+</html>
