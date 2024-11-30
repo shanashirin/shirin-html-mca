@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monthly Calendar</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 10px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Generate Calendar</h2>
+    <input type="number" id="year" placeholder="Enter Year" min="1000">
+    <select id="month">
+        <option value="0">January</option>
+        <option value="1">February</option>
+        <option value="2">March</option>
+        <option value="3">April</option>
+        <option value="4">May</option>
+        <option value="5">June</option>
+        <option value="6">July</option>
+        <option value="7">August</option>
+        <option value="8">September</option>
+        <option value="9">October</option>
+        <option value="10">November</option>
+        <option value="11">December</option>
+    </select>
+    <button onclick="generateCalendar()">Generate</button>
+    <div id="calendar"></div>
+
+    <script>
+        function generateCalendar() {
+            const year = +document.getElementById("year").value;
+            const month = +document.getElementById("month").value;
+
+            if (!year || month < 0 || month > 11) {
+                document.getElementById("calendar").innerHTML = "Please enter a valid year and select a valid month.";
+                return;
+            }
+
+            let calendarHTML = '';
+            const months = ["January", "February", "March", "April", "May", "June", 
+                            "July", "August", "September", "October", "November", "December"];
+            
+            const monthName = months[month];
+            calendarHTML += `<h3>${monthName} ${year}</h3>`;
+            calendarHTML += '<table><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>';
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            calendarHTML += '<tr>' + '<td></td>'.repeat(firstDay);
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                if ((firstDay + day - 1) % 7 === 0 && day !== 1) {
+                    calendarHTML += '</tr><tr>';
+                }
+                calendarHTML += `<td>${day}</td>`;
+            }
+            calendarHTML += '</tr></table>';
+
+            document.getElementById("calendar").innerHTML = calendarHTML;
+        }
+    </script>
+</body>
+</html>
