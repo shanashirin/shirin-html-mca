@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <title>Mouse Over Effect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #content {
+            display: inline-block;
+            padding: 20px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .hover-item {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="content" onmouseover="showItems()" onmouseout="hideItems()">
+        <p>Hover over this text to see more!</p>
+    </div>
+
+    <div id="hover-items">
+        <div class="hover-item">
+            <img src="img1.jpg" height="200" width="200" alt="Image 1">
+            <p>Colourful flowers</p>
+        </div>
+        <div class="hover-item">
+            <img src="img2.jpg" height="200" width="200" alt="Image 2">
+            <p>Tulip</p>
+        </div>
+    </div>
+
+    <script>
+        function showItems() {
+            const hoverItems = document.querySelectorAll('.hover-item');
+            hoverItems.forEach(item => {
+                item.style.display = 'block';
+            });
+        }
+
+        function hideItems() {
+            const hoverItems = document.querySelectorAll('.hover-item');
+            hoverItems.forEach(item => {
+                item.style.display = 'none';
+            });
+        }
+    </script>
+
+</body>
+
+</html>
