@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mouseover Event</title>
+    <style>
+        #hover-content {
+            display: none;
+            margin-top: 10px;
+        }
+        #hover-area {
+            padding: 10px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="hover-area" onmouseover="showContent()" onmouseout="hideContent()">
+        Hover over this text
+    </div>
+    <div id="hover-content">
+        <img src="concat.jpg" height="200" width="200" alt="Sample Image"><br>
+        <p>This text and image appear when you hover!</p>
+    </div>
+
+    <script>
+        function showContent() {
+            document.getElementById('hover-content').style.display = 'block';
+        }
+        function hideContent() {
+            document.getElementById('hover-content').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
